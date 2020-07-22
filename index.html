@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Media Player</title>
+	</head>
+	<style>
+		body {
+			margin: 0;
+			background-color: goldenrod;
+		}
+		video {
+			padding-top: 15px;
+		}
+		button {
+			margin-top: 15px;
+		}
+		header {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+		}
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			background-color: #b7aeaa;
+			margin-top: 15px;
+		}
+		.movie {
+			width: 70%;
+		}
+	</style>
+	<body>
+		<header>
+			<h1>PlatziMediaPlayer.js</h1>
+			<p>An extensible media player.</p>
+		</header>
+
+		<main class="container">
+			<video class="movie">
+				<source src="./assets/801.mp4" />
+			</video>
+
+			<button>Play/Pause</button>
+		</main>
+	</body>
+	<script>
+		const video = document.querySelector("video");
+		const button = document.querySelector("button");
+
+		function MediaPlayer(config) {
+			this.media = config.el;
+		}
+
+		MediaPlayer.prototype.play = function () {
+			this.media.paused ? this.media.play() : this.media.pause();
+		};
+
+		const player = new MediaPlayer({ el: video });
+		button.onclick = () => player.play();
+	</script>
+</html>
